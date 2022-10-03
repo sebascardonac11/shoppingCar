@@ -1,0 +1,22 @@
+{
+  "name": "shoppingcar",
+  "version": "1.0.0",
+  "description": "Backend of shopping Car to photoevent.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebascardonac11/shoppingCar.git"
+  },
+  "keywords": [
+    "photoevent"
+  ],
+  "author": "Sebastian Cardona Correa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebascardonac11/shoppingCar/issues"
+  },
+  "homepage": "https://github.com/sebascardonac11/shoppingCar#readme"
+}
