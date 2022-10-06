@@ -11,7 +11,7 @@ exports.handler = async function (event, context, callback) {
   switch (event.httpMethod) {
     case 'POST':
       console.log("### POST ####");
-      response = await payU.saveTx(event.body);
+      response = await payU.saveTx(event.body,event.requestContext.authorizer.claims.email);
       break;
     case 'PUT':
       console.log("### PUT ####");

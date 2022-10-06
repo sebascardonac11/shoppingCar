@@ -8,12 +8,12 @@ module.exports = class payU {
         this.DYNAMODBTABLE = table
         this.Entity = 'PURCHASE';
     }
-    async saveTx(body) {
+    async saveTx(body,client) {
         try {
             const uuid = Str.uuid();
             var Item = JSON.parse(body);
            // Item.photographer = photographer
-            //Item.mainkey = Item.event;
+            Item.mainkey = client
             Item.mainsort = 'PURCHASE-' + uuid;
             Item.entity = 'PURCHASE'
             var params = {
@@ -21,7 +21,7 @@ module.exports = class payU {
                 Item: Item
             }
             console.log("param: ", params)
-            //var result = await dynamo.put(params).promise();
+            var result = await dynamo.put(params).promise();
             return {
                 statusCode: 200,
                 data: {purchaseId:Item.mainsort}
