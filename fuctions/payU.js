@@ -12,8 +12,8 @@ module.exports = class payU {
         try {
             const uuid = Str.uuid();
             var Item = JSON.parse(body);
-            Item.photographer = photographer
-            Item.mainkey = Item.event;
+           // Item.photographer = photographer
+            //Item.mainkey = Item.event;
             Item.mainsort = 'PURCHASE-' + uuid;
             Item.entity = 'PURCHASE'
             var params = {

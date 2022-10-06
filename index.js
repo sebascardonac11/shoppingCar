@@ -12,13 +12,14 @@ exports.handler = async function (event, context, callback) {
     case 'POST':
       console.log("### POST ####");
       response = await payU.saveTx(event.queryStringParameters);
+      break;
     case 'PUT':
       console.log("### PUT ####");
+      break;
     case 'GET':
       console.log("### GET ####");
       //response = await payU.ping();
       response = await payU.getBanks();
-      
       break;
     default:
       break;
