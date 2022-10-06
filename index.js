@@ -19,7 +19,7 @@ exports.handler = async function (event, context, callback) {
     case 'GET':
       console.log("### GET ####");
       //response = await payU.ping();
-      response = await payU.getBanks();
+      response = await payU.getTX(event.requestContext.authorizer.claims.email);
       break;
     default:
       break;

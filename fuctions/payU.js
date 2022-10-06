@@ -34,6 +34,28 @@ module.exports = class payU {
             };
         }
     }
+    async getTX(client){
+        try {
+            var params = {
+                TableName: this.DYNAMODBTABLE,
+                ExpressionAttributeValues: {
+                    ':hashKey': client,
+                    ':entity': this.entity
+                },
+                KeyConditionExpression: 'mainkey =:hashKey',
+                FilterExpression: 'entity=:entity'
+            }
+            console.log(params)
+            var oderDB= await dynamo.query(params).promise();
+            return oderDB.Items;
+        } catch (error) {
+            console.log("Someting Wrong in payU.getTX ", error)
+            return {
+                statusCode: 400,
+                data: "Someting Wrong in payU.getTX "
+            };
+        }
+    }
     async ping() {
         try {
             var body = {
