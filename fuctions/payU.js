@@ -24,7 +24,7 @@ module.exports = class payU {
             //var result = await dynamo.put(params).promise();
             return {
                 statusCode: 200,
-                data: "Guardando "+Item.mainsort
+                data: {purchaseId:Item.mainsort}
             }
         } catch (error) {
             console.log("Someting Wrong in payU.saveTx ", error)
