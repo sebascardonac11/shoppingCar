@@ -20,6 +20,7 @@ module.exports = class payU {
             var Item = JSON.parse(body);
             // Item.photographer = photographer
             Item.mainkey = client
+            Item.status = 'Pending'
             Item.mainsort = this.Entity +'-' + uuid;
             Item.entity = this.Entity
             var params = {
