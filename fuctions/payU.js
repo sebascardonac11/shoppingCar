@@ -20,8 +20,8 @@ module.exports = class payU {
             var Item = JSON.parse(body);
             // Item.photographer = photographer
             Item.mainkey = client
-            Item.mainsort = 'PURCHASE-' + uuid;
-            Item.entity = 'PURCHASE'
+            Item.mainsort = this.Entity +'-' + uuid;
+            Item.entity = this.Entity
             var params = {
                 TableName: this.DYNAMODBTABLE,
                 Item: Item
@@ -52,8 +52,11 @@ module.exports = class payU {
                 FilterExpression: 'entity=:entity'
             }
             console.log(params)
-            var oderDB = await dynamo.query(params).promise();
-            return oderDB.Items;
+            var orderDB = await dynamo.query(params).promise();
+            return {
+                statusCode: 200,
+                data: orderDB
+            }
         } catch (error) {
             console.log("Someting Wrong in payU.getTX ", error)
             return {
