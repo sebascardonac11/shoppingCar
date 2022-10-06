@@ -2,6 +2,12 @@ const axios = require('axios').default;
 const Str = require('@supercharge/strings')
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
+const AWS = require('aws-sdk');
+AWS.config.update({
+    maxRetries: 15,
+    retryDelayOptions: { base: 500 }
+});
+const dynamo = new AWS.DynamoDB.DocumentClient();
 module.exports = class payU {
     constructor(bucket, table) {
         this.BUCKET = bucket;
