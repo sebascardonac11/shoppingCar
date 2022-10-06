@@ -11,7 +11,7 @@ module.exports = class payU {
     async saveTx(body) {
         try {
             const uuid = Str.uuid();
-            var Item = JSON.parse(body);
+            var Item = body;
             Item.photographer = photographer
             Item.mainkey = Item.event;
             Item.mainsort = 'PURCHASE-' + uuid;
