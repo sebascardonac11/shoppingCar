@@ -55,7 +55,7 @@ module.exports = class payU {
             var orderDB = await dynamo.query(params).promise();
             return {
                 statusCode: 200,
-                data: orderDB
+                data: orderDB.Items
             }
         } catch (error) {
             console.log("Someting Wrong in payU.getTX ", error)
