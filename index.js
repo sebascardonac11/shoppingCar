@@ -11,7 +11,12 @@ exports.handler = async function (event, context, callback) {
   switch (event.httpMethod) {
     case 'POST':
       console.log("### POST ####");
+      if (event.resource == '/ShoppingCar/payU') {
       response = await payU.saveTx(event.body,event.requestContext.authorizer.claims.email);
+      }
+      if (event.resource == '/ShoppingCar/payU/confirmation') {
+        response = await payU.setConfirmationTx(event.body);
+      }
       break;
     case 'PUT':
       console.log("### PUT ####");

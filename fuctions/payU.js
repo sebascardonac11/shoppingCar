@@ -14,11 +14,11 @@ module.exports = class payU {
         this.DYNAMODBTABLE = table
         this.Entity = 'PURCHASE';
     }
-    async saveTx(body,client) {
+    async saveTx(body, client) {
         try {
             const uuid = Str.uuid();
             var Item = JSON.parse(body);
-           // Item.photographer = photographer
+            // Item.photographer = photographer
             Item.mainkey = client
             Item.mainsort = 'PURCHASE-' + uuid;
             Item.entity = 'PURCHASE'
@@ -30,17 +30,17 @@ module.exports = class payU {
             var result = await dynamo.put(params).promise();
             return {
                 statusCode: 200,
-                data: {purchaseId:Item.mainsort}
+                data: { purchaseId: Item.mainsort }
             }
         } catch (error) {
             console.log("Someting Wrong in payU.saveTx ", error)
             return {
                 statusCode: 404,
-                data: "Someting Wrong in payU.saveTx ",error
+                data: "Someting Wrong in payU.saveTx ", error
             };
         }
     }
-    async getTX(client){
+    async getTX(client) {
         try {
             var params = {
                 TableName: this.DYNAMODBTABLE,
@@ -52,13 +52,28 @@ module.exports = class payU {
                 FilterExpression: 'entity=:entity'
             }
             console.log(params)
-            var oderDB= await dynamo.query(params).promise();
+            var oderDB = await dynamo.query(params).promise();
             return oderDB.Items;
         } catch (error) {
             console.log("Someting Wrong in payU.getTX ", error)
             return {
                 statusCode: 400,
                 data: "Someting Wrong in payU.getTX "
+            };
+        }
+    }
+    async setConfirmationTx(body) {
+        try {
+            console.log("Confirmation ", body)
+            return {
+                statusCode: 200,
+                data: "done."
+            };
+        } catch (error) {
+            console.log("Someting Wrong in payU.setConfirmationTx ", error)
+            return {
+                statusCode: 400,
+                data: "Someting Wrong in payU.setConfirmationTx "
             };
         }
     }
