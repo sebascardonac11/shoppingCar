@@ -46,7 +46,7 @@ module.exports = class payU {
                 TableName: this.DYNAMODBTABLE,
                 ExpressionAttributeValues: {
                     ':hashKey': client,
-                    ':entity': this.entity
+                    ':entity': this.Entity
                 },
                 KeyConditionExpression: 'mainkey =:hashKey',
                 FilterExpression: 'entity=:entity'
