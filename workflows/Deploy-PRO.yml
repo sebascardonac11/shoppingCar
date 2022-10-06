@@ -4,12 +4,12 @@ on:
     branches:
     - main
 env:
-  enviromentName: pro
+  enviromentName: PRO
 jobs:
   Deployment:
     runs-on: ubuntu-latest
     environment:
-      name: pro
+      name: PRO
       url: https://d3ri3uhvzvztpt.cloudfront.net/
     steps:
       - uses: actions/checkout@v2

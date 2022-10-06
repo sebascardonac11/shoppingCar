@@ -4,12 +4,12 @@ on:
     branches:
     - feature/init
 env:
-  enviromentName: dev
+  enviromentName: DEV
 jobs:
   Deployment:
     runs-on: ubuntu-latest
     environment:
-      name: dev
+      name: DEV
       url: https://d3ri3uhvzvztpt.cloudfront.net/
     steps:
       - uses: actions/checkout@v2
