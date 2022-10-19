@@ -1,15 +1,15 @@
-name: Deploy Session Production
+name: Deploy Photo Development
 on:
   push:
     branches:
-    - main
+    - feature/init
 env:
-  enviromentName: pro
+  enviromentName: DEV
 jobs:
   Deployment:
     runs-on: ubuntu-latest
     environment:
-      name: pro
+      name: DEV
       url: https://d3ri3uhvzvztpt.cloudfront.net/
     steps:
       - uses: actions/checkout@v2
@@ -31,11 +31,10 @@ jobs:
           aws lambda update-function-code \
             --function-name ${{ secrets.LAMBDAFUNCNAME }} \
             --zip-fil "fileb://./deploy.zip" \
-            --region ${{ secrets.AWS_REGION }} \
       - name: Updating Function 
         run: |
           sleep 10
       - name: Configutation
         run: |
           aws lambda update-function-configuration --function-name ${{ secrets.LAMBDAFUNCNAME }} \
-            --environment "Variables={DYNAMODB=photoEvent-Dynamo-photo,BUCKET=photoevent}" 
+            --environment "Variables={DYNAMODB=photoEvent,BUCKET=photoeventdev}" 
