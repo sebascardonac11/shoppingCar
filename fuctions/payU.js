@@ -9,9 +9,12 @@ AWS.config.update({
 });
 const dynamo = new AWS.DynamoDB.DocumentClient();
 module.exports = class payU {
-    constructor(bucket, table) {
+    constructor(bucket, table,apikey,merchantId,accountId) {
         this.BUCKET = bucket;
-        this.DYNAMODBTABLE = table
+        this.DYNAMODBTABLE = table;
+        this.APIKEY=apikey;
+        this.MERCHANID=merchantId;
+        this.ACCOUNTID=accountId;
         this.Entity = 'PURCHASE';
     }
     async saveTx(body, client) {
@@ -68,7 +71,11 @@ module.exports = class payU {
     }
     async setConfirmationTx(body) {
         try {
-            console.log("Confirmation ", body)
+            var signature= this.ACCOUNTID+'~'+this.MERCHANID+'~'+body.reference_sale+'~'+body.value+'~'+body.currency+'~'+body.state_pol
+            console.log("Confirmation ", body);
+            console.log("signature ", signature);
+
+            
             return {
                 statusCode: 200,
                 data: "done."
