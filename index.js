@@ -6,7 +6,13 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 exports.handler = async function (event, context, callback) {
   console.log("Event Photo: ", JSON.stringify(event));
 
-  var payU = new PayU(process.env.BUCKET, process.env.DYNAMODB);
+  var payU = new PayU(
+    process.env.BUCKET, 
+    process.env.DYNAMODB,
+    process.env.APIKEY,
+    process.env.MERCHANID,
+    process.env.ACCOUNTID,
+    );
   var response = { statusCode: 401, data: "Whitout Information" };
   switch (event.httpMethod) {
     case 'POST':
